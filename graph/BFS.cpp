@@ -48,20 +48,20 @@ void createGraphB(MGraph &G) {
 
 //================================================================
 int visited[5] = { 0, 0, 0, 0, 0 }; //0表示没有访问，1表示访问过
-int queue[5]; //初始化一个队列
+int queue[10]; //初始化一个队列
 int first = 0, final = 0; //列队的头，尾指针
 //循环遍历
 void BFS(MGraph G, int i) {
 	ArcNodes temp = NULL;
-	queue[final++] = i; //进栈
+	queue[final++] = i; //进队
 	while (final != first) {
-		int v = queue[first++]; //出栈
+		int v = queue[first++]; //出队
 		visited[v] = 1;
 		cout << v << "-->";
 		temp = G->list[v].frist;
 		while (temp) {
 			if (!visited[temp->index])
-				queue[final++] = temp->index; //进栈
+				queue[final++] = temp->index; //进队
 			temp = temp->next;
 		}
 
@@ -69,7 +69,7 @@ void BFS(MGraph G, int i) {
 
 }
 
-//深度遍历
+//广度遍历
 void BFSTraverse(MGraph G) {
 	int i;
 

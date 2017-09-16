@@ -62,7 +62,7 @@ void DFS(MGraph G, int i) {
 	}
 }
 
-//广度遍历
+//深度遍历
 void DFSTraverse(MGraph G) {
 	int i;
 
