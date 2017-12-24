@@ -9,7 +9,7 @@ typedef struct {
 typedef struct {
 	Triple datas[26];
 	int rpos[6]; //每行非零元素的起始位置
-	int mu, nu, tu;
+	int mu, nu, tu;//行数,列数,非零元素个数
 } TSMatric;
 
 //利用三元组顺序表表示，以行为主序
