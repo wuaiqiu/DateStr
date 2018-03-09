@@ -1,16 +1,15 @@
 #include <iostream>
 using namespace std;
 
-typedef struct BitNode {
+struct BitNode {
 	int data;
-	struct BitNode *lchild, *rchild;
-} BitNode, *Bitree;
+	BitNode *lchild, *rchild;
+};
 
 //二叉排序树:左节点 < 父节点；右节点 >= 父节点
 
 //查询树，T当前的节点，parent是T的父节点，没找到返回NULL，找到返回当前节点T
-Bitree searchBST(Bitree T, int key, Bitree parent) {
-
+BitNode* searchBST(BitNode* &T, int key, BitNode* &parent) {
 	if (!T) {
 		return NULL;
 	}	//若节点为空时，即没有找到此节点
@@ -28,11 +27,10 @@ Bitree searchBST(Bitree T, int key, Bitree parent) {
 }
 
 //插入树（构建树），当节点不存在时就插入
-void insertBST(Bitree T, int key) {
-	Bitree parent = NULL;
+void insertBST(BitNode* &T, int key) {
+	BitNode* parent = NULL;
 	if (!searchBST(T, key, parent)) { //当当前节点T为空时
-
-		Bitree s = (Bitree) malloc(sizeof(BitNode));
+		BitNode* s = (BitNode*) malloc(sizeof(BitNode));
 		s->data = key; //初始化s节点
 		s->lchild = s->rchild = NULL;
 		if (!parent)
@@ -44,9 +42,9 @@ void insertBST(Bitree T, int key) {
 	}
 }
 
-//删除树，
-void deleteBST(Bitree T, int key) {
-	Bitree parent = NULL, current = NULL;
+//删除树
+void deleteBST(BitNode* &T, int key) {
+	BitNode *parent = NULL, *current = NULL;
 	if ((current = searchBST(T, key, parent))) { //当找到此节点时
 		if (!current->rchild) { //1.当待删除的节点只有【左节点】时
 			if (parent->data > key)
@@ -61,7 +59,7 @@ void deleteBST(Bitree T, int key) {
 				parent->rchild = current->rchild;
 			free(current);
 		} else { //2.当待删除的节点有【右节点,左节点】时
-			Bitree left = current->lchild;
+			BitNode* left = current->lchild;
 			parent = left;
 			while (left->rchild) { //寻找待删除节点的直接后继
 				parent = left;
@@ -76,5 +74,4 @@ void deleteBST(Bitree T, int key) {
 			free(left); //释放直接后继节点
 		}
 	}
-
 }

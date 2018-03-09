@@ -1,31 +1,29 @@
 #include <iostream>
 using namespace std;
 
-typedef struct BitNode{
-	int data;
-	struct BitNode *lchild,*rchild;
-}BitNode,*Bitree;
-
-
+struct BitNode{
+	int index;
+	BitNode *lchild,*rchild;
+};
 
 //利用先序构建二叉树,叶子节点要以两个子空节点结束
-void createTree(Bitree &T){
-	int ch;
+void createTree(BitNode* &T){
+	int index;
 	cout<<"input:";
-	scanf("%d",&ch);
-	if(!ch)T=NULL; //0表示空节点
+	scanf("%d",&index);
+	if(!index)T=NULL; //0表示空节点
 	else {
-		T=(Bitree)malloc(sizeof(BitNode));
-		T->data=ch;
+		T=(BitNode*)malloc(sizeof(BitNode));
+		T->index=index;
 		createTree(T->lchild);
 		createTree(T->rchild);
 	}
 }
 
 //先序遍历（递归）
-void preOrderTraverse(Bitree T){
+void preOrderTraverse(BitNode* &T){
 	if(T){
-		cout<<T->data<<"  ";
+		cout<<T->index<<"  ";
 		preOrderTraverse(T->lchild);
 		preOrderTraverse(T->rchild);
 
@@ -34,20 +32,20 @@ void preOrderTraverse(Bitree T){
 
 
 //中序遍历（递归）
-void inOrderTraverse(Bitree T){
+void inOrderTraverse(BitNode* &T){
 	if(T){
 		inOrderTraverse(T->lchild);
-		cout<<T->data<<"  ";
+		cout<<T->index<<"  ";
 		inOrderTraverse(T->rchild);
 	}
 }
 
 
 //后序遍历（递归）
-void postOrderTraverse(Bitree T){
+void postOrderTraverse(BitNode* &T){
 	if(T){
 		postOrderTraverse(T->lchild);
 		postOrderTraverse(T->rchild);
-		cout<<T->data<<"  ";
+		cout<<T->index<<"  ";
 	}
 }

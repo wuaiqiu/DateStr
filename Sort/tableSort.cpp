@@ -1,14 +1,14 @@
 #include <iostream>
 using namespace std;
-typedef struct {
+struct node{
 	int key;
 	int next;
-} node;
+};
 
-typedef struct {
+struct SqListA{
 	node r[5];
 	int length;
-} SqListA;
+};
 
 //重构表结构
 void restructure(SqListA &L) {

@@ -1,21 +1,21 @@
 #include <iostream>
 using namespace std;
 
-typedef struct {
+struct SqList{
 	int r[5];
 	int length;
-} SqList;
+};
 //节点对象
-typedef struct {
+struct node{
 	int key;
 	int next;
-} node;
+};
 
 //采用静态链表形式
-typedef struct {
+struct linkTable{
 	node link[14];
 	int length;	//链表头节点数量（0-9）
-} linkTable;
+};
 
 //分配比较第几位数
 void distribute(SqList L, linkTable &li, int pos) {

@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-typedef struct {
+struct SqList{
 	int r[5];
 	int length;
-} SqList;
+};
 
 //2-路归并排序,两个数组合成一个新数组,返回一个新数组
 void mergeSort(SqList &list, SqList L, int start, int endA, int endB) {

@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-typedef struct {
+struct SqList{
 	int r[5];	//需要排序的数组，r[0]预留
 	int length;	//需要排序的元素个数,4个
-} SqList;	//预定义数据类型SqList
+};	//预定义数据类型SqList
 
 //=========================================================
 //直接插入排序
@@ -23,7 +23,7 @@ void directInsertion(SqList &L) {
 }
 
 //=========================================================
-//折半排序:直接排序的改进，利用折半查找插入元素，减少查找次数
+//折半排序:直接插入排序的改进，利用折半查找插入元素，减少查找次数
 void binarySort(SqList &L, int from, int end) {
 	int i, j, low, high, mid;
 	for (i = from; i <= end; i++) {
@@ -88,4 +88,3 @@ void hashSort(SqList &L, int inc) {
 		}
 	}
 }
-

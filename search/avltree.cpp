@@ -1,40 +1,38 @@
-#include <iostream>
-using namespace std;
 #define LH +1
 #define EH 0
 #define RH -1
 
 //构建平衡二叉树
-typedef struct BitNode {
+struct BitNode {
 	int data;
 	int bf; //平衡因子；|右子树深度 - 左子树深度|
-	struct BitNode *lchild, *rchild;
-} BitNode, *Bitree;
+	BitNode *lchild, *rchild;
+};
 
 //右旋
-void R_Rotate(Bitree &T) {
-	Bitree lc = T->lchild;
+void R_Rotate(BitNode* &T) {
+	BitNode* lc = T->lchild;
 	T->lchild = lc->rchild;
 	lc->rchild = T;
 	T = lc;
 }
 
 //左旋
-void L_Rotate(Bitree &T) {
-	Bitree rc = T->rchild;
+void L_Rotate(BitNode* &T) {
+	BitNode* rc = T->rchild;
 	T->rchild = rc->lchild;
 	rc->lchild = T;
 	T = rc;
 }
 //平衡树（左平衡）
-void leftBalance(Bitree &T) {
-	Bitree lc = T->lchild; //lc为左节点
+void leftBalance(BitNode* &T) {
+	BitNode* lc = T->lchild; //lc为左节点
 	switch (lc->bf) {
 	case LH:  //(1)右旋:T的【左子树的左子树】插入节点
 		T->bf = lc->bf = EH;
 		break;
 	case RH: //(2)左右旋：T的【左子树的右子树】插入节点
-		Bitree rd = lc->rchild; //rd为左节点的右节点
+		BitNode* rd = lc->rchild; //rd为左节点的右节点
 		switch (rd->bf) {
 		case LH:
 			T->bf = RH;
@@ -53,14 +51,14 @@ void leftBalance(Bitree &T) {
 }
 
 //平衡树（右平衡）
-void rightBalance(Bitree &T) {
-	Bitree rc = T->rchild; //rc为右子树
+void rightBalance(BitNode* &T) {
+	BitNode* rc = T->rchild; //rc为右子树
 	switch (rc->bf) {
 	case RH: //(3)左旋:T的【右子树的右子树】插入节点
 		T->bf = rc->bf = EH;
 		break;
 	case LH: //(4)右左旋：T的【右子树的左子树】插入节点
-		Bitree ld = rc->lchild; //ld为右子树的左子树
+		BitNode* ld = rc->lchild; //ld为右子树的左子树
 		switch (ld->bf) {
 		case RH:
 			T->bf = LH;
@@ -79,9 +77,9 @@ void rightBalance(Bitree &T) {
 }
 
 //插入树（平衡二叉树，二叉排序树的升级）,falg表示是否长高，1表示长高，0表示没长
-int insertAVL(Bitree &T, int key, int &flag) {
+int insertAVL(BitNode* &T, int key, int &flag) {
 	if (!T) { //T节点为空
-		T = (Bitree) malloc(sizeof(BitNode));
+		T = (BitNode*) malloc(sizeof(BitNode));
 		T->data = key;
 		T->bf = EH;
 		T->lchild = T->rchild = NULL;

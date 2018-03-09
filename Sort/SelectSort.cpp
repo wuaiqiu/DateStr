@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-typedef struct {
+struct SqList{
 	int r[5];
 	int length;
-} SqList;
+};
 
 //=======================================================
 

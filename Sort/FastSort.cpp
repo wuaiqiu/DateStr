@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-typedef struct {
+struct SqList{
 	int r[5];
 	int length;
-} SqList;
+};
 
 //========================================================
 
@@ -24,15 +24,17 @@ void bubbleSort(SqList &L) {
 
 //============================================================
 
-//分割，返回枢纽（分割点），row为初始点,high为终点
+//分割，返回枢纽（分割点），low为初始点,high为终点
 int partion(SqList &L, int low, int high) {
 	L.r[0] = L.r[low];
-	while (low < high && L.r[high] > L.r[0])
+	while(low<high){
+		while (low < high && L.r[high] > L.r[0])
 		--high;
-	L.r[low] = L.r[high];
-	while (low < high && L.r[low] <= L.r[0])
+		L.r[low] = L.r[high];
+		while (low < high && L.r[low] <= L.r[0])
 		++low;
-	L.r[high] = L.r[low];
+		L.r[high] = L.r[low];
+	}
 	L.r[low] = L.r[0];
 	return low;
 }
@@ -46,4 +48,3 @@ void fastSort(SqList &L, int low, int high) {
 		fastSort(L, piv + 1, high);
 	}
 }
-
