@@ -27,3 +27,17 @@
  * 	long int atol(const char *str): string --> long
  * 	double atof(const char *str): string --> double
  * */
+
+/*
+ * string
+ *
+ *	string s;				默认初始化，一个空字符串
+ *	string s("ssss");		s是字面值“ssss”的副本
+ *	
+ *	s.substr(pos);			得到一个pos到结尾的串
+ *	s.substr(pos1,n);		返回字符串位置为pos1后面的n个字符组成的串
+ *	s.insert(pos,str);		在s的pos位置插入str
+ *	s.erase(10);			删除字符串第十个字符
+ *	s.erase (10,8);       	直接指定删除的字符串位置第十个后面的8个字符
+ *	s.append(str2); 		直接追加一个str2的字符串  
+ * */
